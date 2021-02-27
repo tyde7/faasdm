@@ -57,6 +57,13 @@ test-e2e:
 	uname | /usr/local/bin/faas-cli invoke figlet
 	uname | /usr/local/bin/faas-cli invoke figlet --async
 	sleep 10
+
+	/usr/local/bin/faas-cli store deploy sleep --env write_timeout=1s --env read_timeout=1s --label testing=true
+	sleep 5
+	echo "Test multiple sleep."
+	/usr/local/bin/faas-cli invoke sleep --async
+	time /usr/local/bin/faas-cli invoke sleep
+	sleep 10
 	/usr/local/bin/faas-cli list -v
 	/usr/local/bin/faas-cli remove figlet
 	sleep 3

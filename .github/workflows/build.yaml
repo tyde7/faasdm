@@ -32,5 +32,9 @@ jobs:
         run: make prepare-test
       - name: test e2e
         run: make test-e2e
+      - uses: actions/upload-artifact@v2
+        with:
+          name: faasdm-main-build
+          path: bin/faasd*
 
 
